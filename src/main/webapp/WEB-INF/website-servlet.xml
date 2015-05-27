@@ -28,8 +28,5 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />  
     </bean>
     
-    <mvc:resources mapping="/**" location="/jsp/" />    
-   <!--  <mvc:resources mapping="/boostrap/**" location="/jsp/packages/bosstrap/css" />    
-    <mvc:resources mapping="/styles/**" location="/jsp/packages/styles/css" />    
-    <mvc:resources mapping="/js/**" location="/jsp/packages" />  -->   
+  	<mvc:resources mapping="/packages/**" location="/WEB-INF/packages/"/>
 </beans>

@@ -46,8 +46,7 @@ public class ShoppingCartController {
 					items.add(orderLine);
 				}
 			}
-//			session.setAttribute("cart", items);
-			modelMap.put("cart", items);
+			session.setAttribute("cart", items);
 		}
 		return "cart";
 	}

@@ -1,12 +1,12 @@
-<%-- <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+
+<%-- <%-- <html>
 <head>
     <base href="<%=basePath%>">
 
@@ -20,17 +20,15 @@
 <script>
     window.location.href = "<c:url value="/common/login" />";
 </script>
-</html>
-  --%>
+</html> --%>
  <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link type="text/css" rel="stylesheet" href="/packages/bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="/packages/bootstrap/css/bootstrap-theme.min.css" />
-<link type="text/css" rel="stylesheet" href="/styles/css/normalize.css" />
-<link type="text/css" rel="stylesheet" href="/styles/css/docs.css" />
-<link type="text/css" rel="stylesheet" href="/styles/css/main.css" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/packages/bootstrap/css/bootstrap.min.css" />" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/packages/bootstrap/css/bootstrap-theme.min.css" />" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/packages/styles/css/normalize.css" /> " />
+<link type="text/css" rel="stylesheet" href="<c:url value="/packages/styles/css/docs.css" />" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/packages/styles/css/main.css" />" />
 </head>
 <body>
 <body>
@@ -145,9 +143,8 @@
 		</div>
 	</div>
 </div>
-
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="<c:url value="/packages/jquery-1.10.2.js" />"></script>
+<script src="<c:url value="/packages/bootstrap/js/bootstrap.min.js" /> "></script> 
 </body>
 </html>
  
