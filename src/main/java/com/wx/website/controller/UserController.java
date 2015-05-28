@@ -13,33 +13,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wx.website.model.User;
+import com.wx.website.model.UserRegister;
 import com.wx.website.service.UserService;
-import com.wx.website.serviceImlp.UserServiceImpl;
+import com.wx.website.serviceimpl.UserServiceImpl;
 
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userServiceimpl;
 	
 	@RequestMapping(value = "/loginCheck")
 	public ModelAndView CheckLogin(HttpServletRequest request,User users){
 		
-		boolean isValidUser = userService.getResult(users.getUserName(),users.getPassword());
+		boolean isValidUser = userServiceimpl.getResult(users.getUserName(),users.getPassword());
           
         if (!isValidUser) {
             return new ModelAndView("login", "error", "用户名或密码错误。");
         } else {
-            User user = userService.selectByName(users.getUserName());
+            User user = userServiceimpl.selectByName(users.getUserName());
             request.getSession().setAttribute("user",user);
-            return new ModelAndView("mian");
+            return new ModelAndView("index");
+        }
+	}
+	
+	@RequestMapping(value = "/adminCheck")
+	public ModelAndView adminCheck(HttpServletRequest request,User users){
+		
+		boolean isValidUser = userServiceimpl.getResult(users.getUserName(),users.getPassword());
+          
+        if (!isValidUser) {
+            return new ModelAndView("login", "error", "用户名或密码错误。");
+        } else {
+            User user = userServiceimpl.selectByName(users.getUserName());
+            request.getSession().setAttribute("user",user);
+            return new ModelAndView("index");
         }
 	}
 	
 	@RequestMapping(value="/registeruser", method = RequestMethod.POST)
-	public String registerUser(@ModelAttribute("user") User user){
-		userService.addUser(user);
-		return null;
+	public String registerUser(@ModelAttribute("reuser") UserRegister reuser){
+		User user = userServiceimpl.getUser(reuser);
+		userServiceimpl.addUser(user);
+		return "index";
 	}
 }

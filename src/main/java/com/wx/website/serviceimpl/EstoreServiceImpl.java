@@ -1,11 +1,15 @@
-package com.wx.website.serviceImlp;
+package com.wx.website.serviceimpl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wx.website.dao.EstoreMapper;
 import com.wx.website.model.Estore;
 import com.wx.website.service.EstoreService;
 
+@Service
 public class EstoreServiceImpl implements EstoreService{
 	
 	@Autowired
@@ -14,16 +18,16 @@ public class EstoreServiceImpl implements EstoreService{
 	@Override
 	public void insert(Estore estore) {
 		
-		
+		estoreMapper.insert(estore);
 	}
 
 	@Override
 	public void deleteByPrimaryKey(int goodsId) {
-		
+		estoreMapper.deleteByPrimaryKey(goodsId);
 	}
 
 	@Override
-	public Estore queryAllEstore() {
+	public List<Estore> queryAllEstore() {
 		
 		return estoreMapper.queryAllEstore();
 	}

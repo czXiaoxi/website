@@ -47,7 +47,7 @@
   </bean>
 
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  	<property name="basePackage" value="com.wx.website" />
+  	<property name="basePackage" value="com.wx.website.dao" />
   </bean>
   
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

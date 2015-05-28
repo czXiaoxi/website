@@ -1,12 +1,14 @@
 package com.wx.website.dao;
 
+import java.util.List;
+
 import com.wx.website.model.Estore;
 
 public interface EstoreMapper {
 	
-	 void insert();
+	 void insert(Estore estore);
 	 void deleteByPrimaryKey(int goodsId);
-	 Estore queryAllEstore();
+	 List<Estore> queryAllEstore();
 	 void updateByPrimaryKey(int goodsId);
 	 Estore selectByPrimaryKey(int goodsId);
 }

@@ -12,4 +12,22 @@ public class JspController {
 		
 		return "login";
 	}
+	
+	@RequestMapping(value = "/adminlogin")
+	public String adminlogin(){
+		
+		return "admin";
+	}
+	
+	@RequestMapping(value = "/register")
+	public String register(){
+		
+		return "register";
+	}
+	
+	@RequestMapping(value = "/main")
+	public String main(){
+		
+		return "main";
+	}
 }

@@ -17,21 +17,23 @@ import com.wx.website.model.Estore;
 import com.wx.website.model.OrderLine;
 import com.wx.website.service.EstoreService;
 import com.wx.website.service.OrderlineService;
+import com.wx.website.serviceimpl.EstoreServiceImpl;
+import com.wx.website.serviceimpl.OrderlineServiceImpl;
 
 @Controller
 @RequestMapping(value ="/shoppingcart")
 public class ShoppingCartController {
 	
 	@Autowired
-	private EstoreService estoreService;
+	private EstoreServiceImpl estoreServiceimpl;
 	@Autowired
-	private OrderlineService orderLineService;
+	private OrderlineServiceImpl orderLineServiceimpl;
 	
 	@RequestMapping(value="/orderline/{goodsId}",method=RequestMethod.GET)
 	public String OrderLine(@PathVariable(value="goodsId") int goodsId,ModelMap modelMap,HttpSession session){
 		if(session.getAttribute("cart") == null){
 			List<OrderLine> items = new ArrayList<OrderLine>();
-			OrderLine orderLine = orderLineService.getOrderLine(goodsId);
+			OrderLine orderLine = orderLineServiceimpl.getOrderLine(goodsId);
 			items.add(orderLine);
 			modelMap.put("cart", items);
 		}else {
@@ -42,7 +44,7 @@ public class ShoppingCartController {
 				if(item.getGoodsId() == goodsId) {  
 					item.setCount(item.getCount() + 1);  
 				}else{
-					OrderLine orderLine = orderLineService.getOrderLine(goodsId);
+					OrderLine orderLine = orderLineServiceimpl.getOrderLine(goodsId);
 					items.add(orderLine);
 				}
 			}
@@ -54,7 +56,7 @@ public class ShoppingCartController {
 	
 	@RequestMapping(value="/information",method=RequestMethod.GET)
 	public String getestore(ModelMap modelMap){
-		List<Estore> e = (List<Estore>) estoreService.queryAllEstore();
+		List<Estore> e = estoreServiceimpl.queryAllEstore();
 		modelMap.put("listGoods", e);
 		return "main";
 		

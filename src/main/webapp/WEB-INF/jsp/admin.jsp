@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-                pageEncoding="UTF-8" %>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -48,29 +46,35 @@
     <div class="container" >
     <div class="row">
     <div class="col-md-offset-2" style="padding-left: 30px;margin-top: 30px ;margin-right: 60px" >
-	<table class="table table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>category</th>
-				<th>price</th>
-				<th align="center">Operation</th>
-			</tr>
-		</thead>
-		<tbody>	
-		<c:forEach var="es" items="${listGoods}">
-			<tr>
-				<th>${es.goodsId}</th>
-				<th>${es.goodsName}</th>
-				<th>${es.category}</th>
-				<th>${es.price}</th>
-				<td align="center"><a href="<c:url  value="/shoppingcart/orderline/${es.goodsId}" />" >orderNow</a></td>
-
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
+    <c:if test="${!empty error}">
+    	<font color="red"><c:out value="${error}"/></font>
+	</c:if>
+	<form class="bs-docs-example" action="<c:url value="/user/adminCheck"/>"  method="post">
+		<div>
+			<label class="form-text">
+				<a href="<c:url value="/common/register" />">立即注册?</a>
+			</label>
+		</div>
+	  <fieldset>
+		  <legend> Login </legend>
+	    <div class="form-group">
+	      <label class="col-md-2 form-text">用户名:</label>
+	      <div class="col-md-4"><input type="text"  name="userName" id="userName"  class="form-control" placeholder="请输入用户名…" /></div>
+	      <span class="help-block form-text"></span>
+		</div>
+			    
+		 <div class="form-group">
+		      <label class="col-md-2 form-text">密码:</label>
+		      <div class="col-md-4"><input type="password"  name="password" id="password" class="form-control" placeholder="请输入密码…" /></div>
+		      <span class="help-block form-text"></span>
+	    </div>
+	    
+	    <div > 
+			 <button type="submit" class="btn">Submit</button>
+			 <button type="reset" class="btn">Reset</button>
+		</div>
+	  </fieldset>
+	</form>
 	</div>
 </div>
 </div>

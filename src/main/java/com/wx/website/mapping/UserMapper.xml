@@ -38,19 +38,19 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   
-  <insert id="insert" parameterType="User" >
-    insert into user (user_id, user_name, password, 
+  <insert id="insert" parameterType="java.lang.Integer" >
+    insert into user (user_name, password, 
       address, phone_number)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values ( #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR})
   </insert>
   
-  <insert id="insertSelective" parameterType="User" >
+  <insert id="insertSelective" parameterType="java.lang.Integer" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
+      <!-- <if test="userId != null" >
         user_id,
-      </if>
+      </if> -->
       <if test="userName != null" >
         user_name,
       </if>
@@ -65,9 +65,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
+      <!-- <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
-      </if>
+      </if> -->
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
       </if>

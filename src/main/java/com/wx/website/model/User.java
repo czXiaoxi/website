@@ -12,8 +12,6 @@ public class User {
 				+ ", password=" + password + ", address=" + address
 				+ ", phoneNumber=" + phoneNumber + "]";
 	}
-    private User user;
-    
 	private Integer userId;
 
     private String userName;

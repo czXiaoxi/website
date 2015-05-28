@@ -1,12 +1,14 @@
-package com.wx.website.serviceImlp;
+package com.wx.website.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wx.website.model.Estore;
 import com.wx.website.model.OrderLine;
 import com.wx.website.service.EstoreService;
 import com.wx.website.service.OrderlineService;
 
+@Service
 public class OrderlineServiceImpl implements OrderlineService{
 	
 	@Autowired

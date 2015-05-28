@@ -1,7 +1,9 @@
 package com.wx.website.service;
 
-import com.wx.website.model.User;
+import org.springframework.stereotype.Service;
 
+import com.wx.website.model.User;
+import com.wx.website.model.UserRegister;
 
 public interface UserService {
 	
@@ -10,5 +12,7 @@ public interface UserService {
 	Boolean getResult(String name ,String password);
 	
 	User selectByName(String userName);
+	
+	User getUser(UserRegister reuser);
 	
 }
