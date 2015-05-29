@@ -1,61 +1,67 @@
 package com.wx.website.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wx.website.model.OrderLine;
 import com.wx.website.model.User;
 import com.wx.website.model.UserRegister;
-import com.wx.website.service.UserService;
 import com.wx.website.serviceimpl.UserServiceImpl;
+import com.wx.website.storage.Memcache;
 
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
 	
+	private static Logger logger = LoggerFactory
+			.getLogger(UserController.class);
+
 	@Autowired
 	private UserServiceImpl userServiceimpl;
-	
+
 	@RequestMapping(value = "/loginCheck")
-	public ModelAndView CheckLogin(HttpServletRequest request,User users){
-		
-		boolean isValidUser = userServiceimpl.getResult(users.getUserName(),users.getPassword());
-          
-        if (!isValidUser) {
-            return new ModelAndView("login", "error", "用户名或密码错误。");
-        } else {
-            User user = userServiceimpl.selectByName(users.getUserName());
-            request.getSession().setAttribute("user",user);
-            return new ModelAndView("index");
-        }
+	public ModelAndView CheckLogin(HttpServletRequest request, User users,
+			HttpServletResponse response,
+			@CookieValue(value="JSESSIONID", required=false) String jsessionid) {
+
+		boolean isValidUser = userServiceimpl.getResult(users.getUserName(),
+				users.getPassword());
+
+		if (!isValidUser) {
+			return new ModelAndView("login", "error", "用户名或密码错误。");
+		} else {
+			User user = userServiceimpl.selectByName(users.getUserName());
+			request.getSession().setAttribute("user", user);
+
+			// if user exists , add a cookie like cookie<"userName", "zhagnsan"> 
+			//@CookieValue(value="JSESSIONID", required=false) String jsessionid,
+//			Cookie cookie = new Cookie("JSESSIONID", user.getUserName());
+//			cookie.setMaxAge(60*60*24);
+//			response.addCookie(cookie);
+//			logger.info(String.format("a new user comming! set cookie %s", user.getUserName()));
+			Memcache.cartMap.put(jsessionid, new ArrayList<OrderLine>());
+			return new ModelAndView("common");
+		}
 	}
-	
-	@RequestMapping(value = "/adminCheck")
-	public ModelAndView adminCheck(HttpServletRequest request,User users){
-		
-		boolean isValidUser = userServiceimpl.getResult(users.getUserName(),users.getPassword());
-          
-        if (!isValidUser) {
-            return new ModelAndView("login", "error", "用户名或密码错误。");
-        } else {
-            User user = userServiceimpl.selectByName(users.getUserName());
-            request.getSession().setAttribute("user",user);
-            return new ModelAndView("index");
-        }
-	}
-	
-	@RequestMapping(value="/registeruser", method = RequestMethod.POST)
-	public String registerUser(@ModelAttribute("reuser") UserRegister reuser){
+
+	@RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+	public String registerUser(@ModelAttribute("reuser") UserRegister reuser) {
 		User user = userServiceimpl.getUser(reuser);
 		userServiceimpl.addUser(user);
-		return "index";
+		return "login";
 	}
 }

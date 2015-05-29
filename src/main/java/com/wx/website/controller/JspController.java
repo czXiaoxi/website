@@ -30,4 +30,10 @@ public class JspController {
 		
 		return "main";
 	}
+	
+	@RequestMapping(value = "/cart")
+	public String cart(){
+		
+		return "cart";
+	}
 }

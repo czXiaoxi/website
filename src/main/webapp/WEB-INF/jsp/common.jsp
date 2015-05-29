@@ -18,7 +18,7 @@
     <meta http-equiv="description" content="This is my page">
 </head>
 <script>
-    window.location.href = "<c:url value="/common/login" />";
+    window.location.href = "<c:url value="/shoppingcart/information" />";
 </script>
 </html>
  

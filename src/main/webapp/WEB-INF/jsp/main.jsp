@@ -22,7 +22,7 @@
                   <a href="<c:url value="/common/adminlogin"/>" target="_blank">后台管理</a>
               </li>
             <li>
-            	<a href="<c:url value="#"/>" >购物车</a>
+            	<a href="<c:url value="/common/cart" />" >购物车</a>
             </li>
              <li>
             	<a href="#" >我的订单</a>
@@ -36,7 +36,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right hidden-sm" style="font-size: 14px">
           	 	<li>
-          	 		<a href="#">服务大厅</a>
+          	 		<a href="<c:url value="/shoppingcart/information"/>">购物大厅</a>
           	 	</li>
           	 <li style="color: white; margin-top: 15px; margin-right:10px; padding-left: 5px">
           	 	您好：xx
@@ -55,7 +55,7 @@
 				<th>Name</th>
 				<th>category</th>
 				<th>price</th>
-				<th align="center">Operation</th>
+				<th>Operation</th>
 			</tr>
 		</thead>
 		<tbody>	
@@ -65,7 +65,7 @@
 				<th>${es.goodsName}</th>
 				<th>${es.category}</th>
 				<th>${es.price}</th>
-				<td align="center"><a href="<c:url  value="/shoppingcart/orderline/${es.goodsId}" />" >orderNow</a></td>
+				<td><a href="<c:url  value="/shoppingcart/orderline/${es.goodsId}" />" >orderNow</a></td>
 
 			</tr>
 		</c:forEach>
