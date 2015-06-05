@@ -1,9 +1,7 @@
 package com.wx.website.service;
 
-import org.springframework.stereotype.Service;
-
 import com.wx.website.model.User;
-import com.wx.website.model.UserRegister;
+import com.wx.website.model.dto.UserRegister;
 
 public interface UserService {
 	

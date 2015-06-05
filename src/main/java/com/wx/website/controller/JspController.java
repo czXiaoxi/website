@@ -16,7 +16,7 @@ public class JspController {
 	@RequestMapping(value = "/adminlogin")
 	public String adminlogin(){
 		
-		return "admin";
+		return "adminlogin";
 	}
 	
 	@RequestMapping(value = "/register")
@@ -35,5 +35,35 @@ public class JspController {
 	public String cart(){
 		
 		return "cart";
+	}
+	
+	@RequestMapping(value = "/reset")
+	public String reset(){
+		
+		return "common";
+	}
+	
+	@RequestMapping(value = "/adminreg")
+	public String adminreg(){
+		
+		return "adminreg";
+	}
+	
+	@RequestMapping(value = "/search")
+	public String search(){
+		
+		return "search";
+	}
+	
+	@RequestMapping(value = "/updategoods")
+	public String updategoods(){
+		
+		return "updategoods";
+	}
+	
+	@RequestMapping(value = "/addgoods")
+	public String addgoods(){
+		
+		return "addgoods";
 	}
 }

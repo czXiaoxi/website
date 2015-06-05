@@ -1,5 +1,8 @@
 package com.wx.website.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Admin {
 	
 	private String adminName;

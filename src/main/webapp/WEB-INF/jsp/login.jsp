@@ -22,7 +22,7 @@
             	<a href="<c:url value="/common/cart" />" >购物车</a>
             </li>
              <li>
-            	<a href="#" >我的订单</a>
+            	<a href="<c:url value="/common/reset" />" >购物中心</a>
             </li>
             <li>
             	<a href="<c:url value="/common/login"/>" >登录</a>

@@ -3,7 +3,7 @@ package com.wx.website.storage;
 import java.util.HashMap;
 import java.util.List;
 
-import com.wx.website.model.OrderLine;
+import com.wx.website.model.dto.OrderLine;
 
 public class Memcache {
 	// add a static map for cart

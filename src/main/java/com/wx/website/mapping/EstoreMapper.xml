@@ -10,7 +10,7 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-    goods_id, goods_name, category, describe, price
+    goods_id, goods_name, category, `describe`, price
   </sql>
   
   <select id="queryAllEstore" resultMap="BaseResultMap"> 
@@ -21,14 +21,20 @@
     select * from estore
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </select>
+  
+   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from estore
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from estore
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="Estore" >
-    insert into estore (goods_id, goods_name, category, 
-      describe, price)
-    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+    insert into estore (goods_name, category, 
+      `describe`, price)
+    values (#{goodsName,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
       #{describe,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="Estore" >
@@ -44,7 +50,7 @@
         category,
       </if>
       <if test="describe != null" >
-        describe,
+        `describe`,
       </if>
       <if test="price != null" >
         price,
@@ -60,9 +66,6 @@
       <if test="category != null" >
         #{category,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null" >
-        #{describe,jdbcType=VARCHAR},
-      </if>
       <if test="price != null" >
         #{price,jdbcType=DOUBLE},
       </if>
@@ -77,9 +80,6 @@
       <if test="category != null" >
         category = #{category,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
-      </if>
       <if test="price != null" >
         price = #{price,jdbcType=DOUBLE},
       </if>
@@ -90,7 +90,7 @@
     update estore
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
+      `describe` = #{describe,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>

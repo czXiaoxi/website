@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wx.website.model.Estore;
-import com.wx.website.model.OrderLine;
+import com.wx.website.model.dto.OrderLine;
 import com.wx.website.serviceimpl.EstoreServiceImpl;
 import com.wx.website.serviceimpl.OrderlineServiceImpl;
 import com.wx.website.storage.Memcache;
@@ -40,33 +40,13 @@ public class ShoppingCartController {
 								@CookieValue(value="JSESSIONID", required=false) String jsessionid,
 								HttpServletRequest request){
 		OrderLine orderLine4Memcache = null;
-//		if(session.getAttribute("cart") == null){
-//			List<OrderLine> items = new ArrayList<OrderLine>();
-//			OrderLine orderLine = orderLineServiceimpl.getOrderLine(goodsId);
-//			items.add(orderLine);
-////			modelMap.put("cart", items);
-//			session.setAttribute("cart", items);
-//		}else {
-//			List<OrderLine> items = (List<OrderLine>) session.getAttribute("cart");
-//			Iterator<OrderLine> it = items.iterator();
-//			while(it.hasNext()){  
-//				OrderLine item = it.next();  
-//				if(item.getGoodsId() == goodsId) {  
-//					item.setCount(item.getCount() + 1);  
-//				}else{
-//					OrderLine orderLine = orderLineServiceimpl.getOrderLine(goodsId);
-//					items.add(orderLine);
-//					orderLine4Memcache = orderLine;
-//				}
-//			}
-//			session.setAttribute("cart", items);
-//		}
 		Cookie[] cookies = request.getCookies();
 		for(Cookie coo : cookies){
 			System.out.println(coo);
 		}
 		if(jsessionid == null){
 			return "login";
+			
 		}else {
 			//wrapper orderLine from page
 			orderLine4Memcache = orderLineServiceimpl.getOrderLine(goodsId);

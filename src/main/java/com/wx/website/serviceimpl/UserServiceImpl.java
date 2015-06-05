@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.wx.website.dao.UserMapper;
 import com.wx.website.model.User;
-import com.wx.website.model.UserRegister;
+import com.wx.website.model.dto.UserRegister;
 import com.wx.website.service.UserService;
 
 @Service

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wx.website.model.OrderLine;
 import com.wx.website.model.User;
-import com.wx.website.model.UserRegister;
+import com.wx.website.model.dto.OrderLine;
+import com.wx.website.model.dto.UserRegister;
 import com.wx.website.serviceimpl.UserServiceImpl;
 import com.wx.website.storage.Memcache;
 
@@ -46,13 +46,6 @@ public class UserController {
 		} else {
 			User user = userServiceimpl.selectByName(users.getUserName());
 			request.getSession().setAttribute("user", user);
-
-			// if user exists , add a cookie like cookie<"userName", "zhagnsan"> 
-			//@CookieValue(value="JSESSIONID", required=false) String jsessionid,
-//			Cookie cookie = new Cookie("JSESSIONID", user.getUserName());
-//			cookie.setMaxAge(60*60*24);
-//			response.addCookie(cookie);
-//			logger.info(String.format("a new user comming! set cookie %s", user.getUserName()));
 			Memcache.cartMap.put(jsessionid, new ArrayList<OrderLine>());
 			return new ModelAndView("common");
 		}

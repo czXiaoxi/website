@@ -11,6 +11,7 @@ public interface EstoreService {
 	void insert(Estore estore);
 	void deleteByPrimaryKey(int goodsId);
 	List<Estore> queryAllEstore();
-	void updateByPrimaryKey(int goodsId);
-	Estore selectByPrimaryKey(int goodsId);
+	void updateByPrimaryKey(Estore estore);
+	List<Estore> selectByPrimaryKey(int goodsId);
+	Estore selectById(int goodsId);;
 }

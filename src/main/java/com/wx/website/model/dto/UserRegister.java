@@ -1,4 +1,4 @@
-package com.wx.website.model;
+package com.wx.website.model.dto;
 
 public class UserRegister {
 	

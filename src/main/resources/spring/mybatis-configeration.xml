@@ -4,6 +4,7 @@
 	<typeAliases>  
 		<typeAlias alias="Estore" type="com.wx.website.model.Estore"/>
 		<typeAlias alias="User" type="com.wx.website.model.User"/>
+		<typeAlias alias="Admin" type="com.wx.website.model.Admin"/>
 		<!-- <typeAlias alias="ShoppingCart" type="com.wx.website.model.ShoppingCart"/>  --> 
     </typeAliases>  
     

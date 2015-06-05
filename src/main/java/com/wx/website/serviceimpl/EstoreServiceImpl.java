@@ -33,14 +33,21 @@ public class EstoreServiceImpl implements EstoreService{
 	}
 
 	@Override
-	public void updateByPrimaryKey(int goodsId) {
+	public List<Estore> selectByPrimaryKey(int goodsId) {
 		
+		return estoreMapper.selectByPrimaryKey(goodsId);
 	}
 
 	@Override
-	public Estore selectByPrimaryKey(int goodsId) {
+	public Estore selectById(int goodsId) {
 		
-		return estoreMapper.selectByPrimaryKey(goodsId);
+		return estoreMapper.selectById(goodsId);
+	}
+
+	@Override
+	public void updateByPrimaryKey(Estore estore) {
+		
+		estoreMapper.updateByPrimaryKey(estore);
 	}
 
 }
